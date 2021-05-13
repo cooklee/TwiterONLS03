@@ -4,10 +4,10 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, ListView
 
 from twitter.forms import TweetCreationForm, MessageCreationForm
-from twitter.models import Tweet
+from twitter.models import Tweet, Message
 
 
 class IndexView(View):
@@ -45,6 +45,17 @@ class AddMessageView(LoginRequiredMixin, View):
             message.save()
             return redirect('index')
         return render(request, 'form.html', {'form': form})
+
+
+class ShowMessagesView(LoginRequiredMixin, ListView):
+
+    model = Message
+    template_name = 'message_list.html'
+
+    def get_queryset(self):
+        return Message.objects.filter(to_user=self.request.user)
+
+
 
 
 class UpdateTweetView(LoginRequiredMixin, UpdateView):

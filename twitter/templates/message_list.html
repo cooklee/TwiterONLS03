@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <table >
+    <tr>
+        <th>od</th> <th>Do</th><th>treść</th>
+    </tr>
+   {% for message in object_list %}
+       <tr>
+       <td>{{ message.from_user }}</td>
+       <td>{{ message.to_user }}</td>
+       <td>
+           {{ message.text }}
+       </td>
+       </tr>
+   {% endfor %}
+    </table>
+{% endblock %}

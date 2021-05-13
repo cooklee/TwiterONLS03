@@ -19,7 +19,7 @@
 			<ul>
 				<li><a href="{% url 'add_tweet' %}">dodaj Tweeta</a>
 				<li><a href="{% url 'add_message' %}">wyślij wiadomosc</a>
-{#				<li><a href="https://html-css-js.com/css/code/">CSS</a>#}
+				<li><a href="{% url 'message_list' %}">wiadomosci</a>
 {#				<li><a href="https://htmlcheatsheet.com/js/">JS</a>#}
 			</ul>
 		</nav>
@@ -61,7 +61,7 @@
 	<footer>
 		<p>&copy; You can copy, edit and publish this template but please leave a link to our website | <a href="https://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a></p>
 		<address>
-			Contact: <a href="mailto:me@example.com">Mail me</a>
+			{{user.username}}
 		</address>
 	</footer>
 
