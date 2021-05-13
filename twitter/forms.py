@@ -1,6 +1,6 @@
 from django import forms
 
-from twitter.models import Tweet
+from twitter.models import Tweet, Message
 
 
 class TweetCreationForm(forms.ModelForm):
@@ -10,3 +10,9 @@ class TweetCreationForm(forms.ModelForm):
         widgets = {
             'content': forms.Textarea()
         }
+
+
+class MessageCreationForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['to_user', 'text']

@@ -23,4 +23,6 @@ urlpatterns = [
     path("", views.IndexView.as_view(), name='index'),
     path('accounts/', include('accounts.urls')),
     path('twitter/', include('twitter.urls')),
+
 ]
+

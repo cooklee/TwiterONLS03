@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import UpdateView
 
-from twitter.forms import TweetCreationForm
+from twitter.forms import TweetCreationForm, MessageCreationForm
 from twitter.models import Tweet
 
 
@@ -28,6 +28,21 @@ class AddTweetView(LoginRequiredMixin, View):
             tweet = form.save(commit=False)
             tweet.creator = request.user
             tweet.save()
+            return redirect('index')
+        return render(request, 'form.html', {'form': form})
+
+class AddMessageView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        form = MessageCreationForm()
+        return render(request, 'form.html', {'form': form})
+
+    def post(self, request):
+        form = MessageCreationForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.from_user = request.user
+            message.save()
             return redirect('index')
         return render(request, 'form.html', {'form': form})
 
